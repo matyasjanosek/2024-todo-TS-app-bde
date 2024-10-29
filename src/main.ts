@@ -1,17 +1,3 @@
-/**
- * NOTE to self
- * Make a module and import the functions from the module
- * Seperate the functions into different files
- * Logical grouping of functions - for example, all functions related to adding a todo item can be in one file
- * 
- */
-
-
-/**
- * REDO it. More streqamlined and better structure - 
- */
-
-
 // 1 Import the CSS file: This ensures that the styles are applied to the HTML elements.
 import './style.css';
 
@@ -34,10 +20,6 @@ const todoForm = document.querySelector('.todo-form') as HTMLFormElement;    // 
 const todoList = document.getElementById('todo-list') as HTMLUListElement;   // exist in HTML file
 
 
-
-
-
-
 // Step 5: Function to add a new todo
 // Function to add a new todo: This function creates a new todo object and adds it to the array.
 export const addTodo = (text: string): void => {
@@ -51,7 +33,7 @@ export const addTodo = (text: string): void => {
   renderTodos(); // Render the updated list of todos => create the function next
 };
 
-// Step 6: Function to render the list of todos
+// Step 6: Function to render the list of todos / displaying list of todos
 const renderTodos = (): void => {
   // Clear the current list
   todoList.innerHTML = '';
@@ -61,7 +43,7 @@ const renderTodos = (): void => {
     const li = document.createElement('li');
     li.className = 'todo-item';
 
-    // Apply a "completed" class if the todo is marked as completed
+    // NEW Apply a "completed" class if the todo is marked as completed
     if (todo.completed) {
       li.classList.add('completed'); // Add this class for styling completed items
     }
@@ -92,9 +74,6 @@ const renderTodos = (): void => {
 // Step 6.1: Function to render the list of todos
 // Initial render
 renderTodos(); // Call the renderTodos function to display the initial list of todos : Should be at the end of the code to ensure that the function is defined before it is called.
-// The initial render is important to display the list of todos when the page is first loaded. Without it, the list would be empty until a new todo is added.
-// Move it when code is complete ( refactoring ) 
-
 
 // Step 7: Event listener for the form submission
 // Event listener for the form submission: This listener handles the form submission, adds the new todo, and clears the input field.
@@ -127,7 +106,6 @@ todoForm.addEventListener('submit', (event: Event) => {
 });
 
 
-
 // Step 8: Function to removes all a todo by ID
 // Function to add event listener to the remove button - this function has an callback function that removes the todo item from the array.
 const addRemoveButtonListener = (li: HTMLLIElement, id: number): void => {
@@ -136,33 +114,12 @@ const addRemoveButtonListener = (li: HTMLLIElement, id: number): void => {
 };
 
 
-/*
-example of explicit null checking - without optional chaining operator, but basically the same as above
-const addRemoveButtonListener = (li: HTMLLIElement, id: number): void => {
-  const removeButton = li.querySelector('button');
-  if (removeButton) {
-    removeButton.addEventListener('click', () => removeTodoById(id));
-  } else {
-    console.error(`Remove button not found for todo item with ID: ${id}`);
-  }
-};
-*/
-
-
 // Step 8: Function to remove a todo by ID
 // Function to remove a todo by ID: This function removes a todo from the array based on its ID.
 export const removeTodo = (id: number): void => {
   todos = todos.filter(todo => todo.id !== id);
   renderTodos(); // Re-render the updated list of todos
 }; 
-
-
-// Edit event listener - make button and add button to each todo
-const addEditButtonListener = (li: HTMLLIElement, id:number) => {
-  // make use of the editBtn id to edit the todo
-  const editButton = li.querySelector('#editBtn')
-  editButton?.addEventListener('click', () => editTodo(id)) 
-}
 
 
 // Edit function - prompt user to edit the todo : editTodo
