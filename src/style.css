@@ -93,3 +93,8 @@ h1 {
   margin-top: 5px;
   display: none;
 }
+
+.completed span {
+  text-decoration: line-through;
+  color: gray;
+}
