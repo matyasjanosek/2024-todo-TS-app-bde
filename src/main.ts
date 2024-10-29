@@ -127,14 +127,14 @@ todoForm.addEventListener('submit', (event: Event) => {
 });
 
 
-/*
+
 // Step 8: Function to removes all a todo by ID
 // Function to add event listener to the remove button - this function has an callback function that removes the todo item from the array.
 const addRemoveButtonListener = (li: HTMLLIElement, id: number): void => {
   const removeButton = li.querySelector('button');
   removeButton?.addEventListener('click', () => removeTodo(id)); // We have an optional chaining operator here to avoid errors if the button is not found - for example, if the button is removed from the DOM.
 };
-*/
+
 
 /*
 example of explicit null checking - without optional chaining operator, but basically the same as above
@@ -156,14 +156,14 @@ export const removeTodo = (id: number): void => {
   renderTodos(); // Re-render the updated list of todos
 }; 
 
-/*
+
 // Edit event listener - make button and add button to each todo
 const addEditButtonListener = (li: HTMLLIElement, id:number) => {
   // make use of the editBtn id to edit the todo
   const editButton = li.querySelector('#editBtn')
   editButton?.addEventListener('click', () => editTodo(id)) 
 }
-*/
+
 
 // Edit function - prompt user to edit the todo : editTodo
 const editTodo = (id:number) => {
@@ -211,6 +211,30 @@ export const toggleTodoCompleted = (id: number): void => {
     renderTodos(); // Re-render the updated list of todos
   }
 };
+
+// Step 10: Function to clear all completed todos
+const clearCompletedTodos = (): void => {
+  // Filter out completed todos
+  todos = todos.filter(todo => !todo.completed);
+  renderTodos(); // Re-render the updated list of todos
+};
+
+// Step 11: Function to toggle the completed status of all todos
+const toggleAllTodos = (): void => {
+  const allCompleted = todos.every(todo => todo.completed); // Check if all are completed
+  todos.forEach(todo => {
+    todo.completed = !allCompleted; // If all are completed, set to incomplete; otherwise, complete all
+  });
+  renderTodos(); // Re-render the updated list of todos
+};
+
+// Event listeners for the buttons
+const clearCompletedBtn = document.getElementById('clearCompletedBtn') as HTMLButtonElement;
+clearCompletedBtn.addEventListener('click', clearCompletedTodos);
+
+const toggleAllBtn = document.getElementById('toggleAllBtn') as HTMLButtonElement;
+toggleAllBtn.addEventListener('click', toggleAllTodos);
+
 
 /** 
  * Kristian: 6th of September 2024, BDE
