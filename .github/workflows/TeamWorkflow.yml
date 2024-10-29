@@ -29,3 +29,41 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: test/todo/ # test.matyasjanosek.dk/todo/
           local-dir: dist/
+          
+      - name: Install Testcafe
+        run: npm install -g testcafe
+
+      - name: Update APT
+        run:  apt-get update
+
+      - name: Install Chromium
+        run: apt-get install -y chromium
+
+      - name: Run tests
+        run: testcafe chromium:headless src/todo-tests.js
+
+      - name: Store artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist/
+
+  deployment:
+    needs: integration-delivery
+    runs-on: ubuntu-latest
+    environment: Live
+    steps:
+      - name: Load artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
+          path: dist/
+
+      - name: FTP deploy
+        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        with:
+          server: ${{ vars.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: live/todo/ # test.matyasjanosek.dk/todo/
+          local-dir: dist/
