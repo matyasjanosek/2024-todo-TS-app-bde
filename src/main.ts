@@ -106,14 +106,6 @@ todoForm.addEventListener('submit', (event: Event) => {
 });
 
 
-// Step 8: Function to removes all a todo by ID
-// Function to add event listener to the remove button - this function has an callback function that removes the todo item from the array.
-const addRemoveButtonListener = (li: HTMLLIElement, id: number): void => {
-  const removeButton = li.querySelector('button');
-  removeButton?.addEventListener('click', () => removeTodo(id)); // We have an optional chaining operator here to avoid errors if the button is not found - for example, if the button is removed from the DOM.
-};
-
-
 // Step 8: Function to remove a todo by ID
 // Function to remove a todo by ID: This function removes a todo from the array based on its ID.
 export const removeTodo = (id: number): void => {
