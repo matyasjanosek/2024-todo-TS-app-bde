@@ -127,13 +127,15 @@ todoForm.addEventListener('submit', (event: Event) => {
 });
 
 
-
+/*
 // Step 8: Function to removes all a todo by ID
 // Function to add event listener to the remove button - this function has an callback function that removes the todo item from the array.
 const addRemoveButtonListener = (li: HTMLLIElement, id: number): void => {
   const removeButton = li.querySelector('button');
   removeButton?.addEventListener('click', () => removeTodo(id)); // We have an optional chaining operator here to avoid errors if the button is not found - for example, if the button is removed from the DOM.
 };
+*/
+
 /*
 example of explicit null checking - without optional chaining operator, but basically the same as above
 const addRemoveButtonListener = (li: HTMLLIElement, id: number): void => {
@@ -154,13 +156,14 @@ export const removeTodo = (id: number): void => {
   renderTodos(); // Re-render the updated list of todos
 }; 
 
-
+/*
 // Edit event listener - make button and add button to each todo
 const addEditButtonListener = (li: HTMLLIElement, id:number) => {
   // make use of the editBtn id to edit the todo
   const editButton = li.querySelector('#editBtn')
   editButton?.addEventListener('click', () => editTodo(id)) 
 }
+*/
 
 // Edit function - prompt user to edit the todo : editTodo
 const editTodo = (id:number) => {
